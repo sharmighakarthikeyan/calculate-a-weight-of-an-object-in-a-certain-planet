@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weight Calculator</title>
+  <script>
+    function calculateWeight() {
+      // Get the input values
+      var earthWeight = parseFloat(document.getElementById("earthWeight").value);
+
+      // Define the conversion factors for each planet
+      var conversionFactors = {
+        mercury: 0.38,
+        venus: 0.91,
+        mars: 0.38,
+        jupiter: 2.34,
+        saturn: 0.93,
+        uranus: 0.92,
+        neptune: 1.12,
+        pluto: 0.06,
+        moon: 0.17,
+        sun: 27.9
+      };
+
+      // Calculate the weight for each planet
+      var planetWeights = {};
+      for (var planet in conversionFactors)
+       {
+        if (conversionFactors.hasOwnProperty(planet)) 
+        {
+          var weight = Math.round(conversionFactors[planet] * earthWeight);
+          planetWeights[planet] = weight;
+        }
+      }
+
+      // Update the text boxes with the calculated weights
+      for (var planet in planetWeights)
+       {
+        if (planetWeights.hasOwnProperty(planet))
+         {
+          document.getElementById(planet).value = planetWeights[planet];
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <h1>Weight Calculator</h1>
+  <form>
+    <label for="earthWeight">Enter your weight on Earth:</label>
+    <input type="number" id="earthWeight" step="any" required><br><br>
+
+    <label for="mercury">Weight on Mercury:</label>
+    <input type="text" id="mercury" readonly><br>
+
+    <label for="venus">Weight on Venus:</label>
+    <input type="text" id="venus" readonly><br>
+
+    <label for="mars">Weight on Mars:</label>
+    <input type="text" id="mars" readonly><br>
+
+    <label for="jupiter">Weight on Jupiter:</label>
+    <input type="text" id="jupiter" readonly><br>
+
+    <label for="saturn">Weight on Saturn:</label>
+    <input type="text" id="saturn" readonly><br>
+
+    <label for="uranus">Weight on Uranus:</label>
+    <input type="text" id="uranus" readonly><br>
+
+    <label for="neptune">Weight on Neptune:</label>
+    <input type="text" id="neptune" readonly><br>
+
+    <label for="pluto">Weight on Pluto:</label>
+    <input type="text" id="pluto" readonly><br>
+
+    <label for="moon">Weight on Moon:</label>
+    <input type="text" id="moon" readonly><br>
+
+    <label for="sun">Weight on Sun:</label>
+    <input type="text" id="sun" readonly><br><br>
+
+    <input type="button" value="Calculate" onclick="calculateWeight()">
+  </form>
+</body>
+</html>
